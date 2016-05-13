@@ -1,0 +1,19 @@
+{
+  "name": "amp-demo",
+  "version": "1.0.0",
+  "description": "AMP Demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "article-json-to-amp": "1.6.2",
+    "article-json-to-fbia": "1.0.0",
+    "ejs": "2.4.1",
+    "lodash": "4.12.0",
+    "html-to-article-json": "1.12.4",
+    "request-promise": "3.0.0"
+  }
+}
