@@ -1,2 +1,6 @@
+#keep it sekter
+
+provision/aws.sh
+
 .vagrant
 .idea
