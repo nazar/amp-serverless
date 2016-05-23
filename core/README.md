@@ -8,8 +8,15 @@ Document all endpoints here and include: path, parameters, method, type of resul
 
 ## Testing
 
-### Unit Tests
+Mocha tests are provided via [serverless-mocha-plugin](https://github.com/SC5/serverless-mocha-plugin)
 
-### Integration Tests
+To add a function test:
+
+`sls function mocha-create [function name]`
+
+To run a test:
+
+`sls function mocha-run [function name]`
 
 ## Deployment
+

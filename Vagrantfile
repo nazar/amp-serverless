@@ -14,9 +14,11 @@ Vagrant.configure(2) do |config|
     type: "rsync",
     rsync__exclude: [
       ".git",
-      "node_modules"
+      "node_modules",
+
+      "core/_meta",
       "core/node_modules",
-      "core/functions/node_modules",
+      "core/functions/amp/node_modules",
 
       "dataslinger/node_modules",
       "dataslinger/functions/node_modules",

@@ -1,5 +1,9 @@
 {
-  "name": "serverless-demo",
+  "name": "core serverless lambdas",
+  "description": "whosay-core related lambda functions and APIs",
   "custom": {},
-  "plugins": ["serverless-lambda-prune-plugin"]
+  "plugins": [
+    "serverless-lambda-prune-plugin",
+    "serverless-mocha-plugin"
+  ]
 }

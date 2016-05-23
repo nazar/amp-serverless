@@ -1,7 +1,7 @@
 {
-  "name": "amp-demo",
+  "name": "amp-core",
   "version": "1.0.0",
-  "description": "AMP Demo",
+  "description": "AMP Functions and API",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
