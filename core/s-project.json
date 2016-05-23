@@ -1,5 +1,5 @@
 {
-  "name": "core serverless lambdas",
+  "name": "core-serverless-lambdas",
   "description": "whosay-core related lambda functions and APIs",
   "custom": {},
   "plugins": [

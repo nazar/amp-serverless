@@ -12,7 +12,7 @@ wrapper.init(mod);
 describe('story', () => {
 
   it('Should return content', (done) => {
-    wrapper.run({storyId: 1295}, (err, response) => {
+    wrapper.run({ storyId: 1295 }, (err, response) => {
       if (err) {
         done(err);
       } else {
@@ -29,14 +29,12 @@ describe('story', () => {
     });
 
     it('Should contain a title', done => {
-      wrapper.run({storyId: 1295}, (err, response) => {
+      wrapper.run({ storyId: 1295 }, (err, response) => {
         if (err) {
           done(err);
         } else {
-          let doc;
-
           jsdomify.create(response);
-          doc = jsdomify.getDocument();
+          const doc = jsdomify.getDocument();
 
           expect(doc.title).to.equal('Rory McIlroy: The Before and After of a Golf Pro');
           done();

@@ -1,31 +1,40 @@
 'use strict';
 
-/* eslint-disable global-require */
-var path = require('path');
+const path = require('path');
+const gulp = require('gulp');
 
-var gulp = require('gulp');
-var install = require('gulp-install');
-var runSequence = require('run-sequence');
+const shell = require('gulp-shell');
+const runSequence = require('run-sequence');
 
-var basePaths = {
-  base: '..',
-  payload: './lambda/node/report_thumbnails/report_thumbnails.zip'
-};
+require('require-dir')();
 
-gulp.task('lambda:npm', function() {
-  return gulp.src(path.join(basePaths.base, 'package.json'))
-    .pipe(gulp.dest(basePaths.base))
-    .pipe(install({production: true}));
-});
+gulp.task('core:amp:deploy:function:shell', false,
+  shell
+    .task(['sls function deploy -a'], {
+      cwd: path.join(__dirname, '..')
+    })
+);
 
+gulp.task('core:amp:deploy:gateway:shell', 'Deploys AMP Gateways',
+  shell
+    .task(['sls endpoint deploy'], {
+      cwd: path.join(__dirname, '..')
+    })
+);
 
-gulp.task('lambda:build', function(cb) {
+gulp.task('core:amp:deploy:function', 'Deploys AMP Lambda Functions', done => {
   runSequence(
-    'lambda:clean',
-    'lambda:npm',
-    'lambda:js',
-    'lambda:zip',
-    'lambda:upload',
-    cb
+    'core:amp:npm:install',
+    'core:amp:deploy:function:shell',
+    done
   );
 });
+
+gulp.task('core:amp:deploy', 'Deploys AMP Function and Gateway', done => {
+  runSequence(
+    'core:amp:deploy:function',
+    'core:amp:deploy:gateway:shell',
+    done
+  );
+});
+
