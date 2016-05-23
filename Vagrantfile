@@ -23,5 +23,7 @@ Vagrant.configure(2) do |config|
   # provision VM
   config.vm.provision "shell", path: "provision/swapfile.sh", privileged: true
   config.vm.provision "shell", path: "provision/base.sh", privileged: false
+  config.vm.provision "shell", path: "provision/globals.sh", privileged: false
+  config.vm.provision "shell", path: "provision/aws.sh", privileged: false
 
 end

@@ -4,7 +4,7 @@
   "description": "Serverless Lambda function for project: serverless-demo",
   "customName": false,
   "customRole": false,
-  "handler": "amp/story/handler.handler",
+  "handler": "story/handler.handler",
   "timeout": 6,
   "memorySize": 128,
   "authorizer": {},
@@ -24,7 +24,7 @@
       "requestParameters": {},
       "requestTemplates": {
         "application/json": {
-          "pathId": "$input.params('id')"
+          "storyId": "$input.params('id')"
         }
       },
       "responses": {

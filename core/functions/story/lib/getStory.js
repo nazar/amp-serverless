@@ -1,44 +1,45 @@
-var _ = require('lodash');
-var request = require('request-promise');
-var toJson = require('html-to-article-json')({});
-var toAmp = require('article-json-to-amp');
-var ejs = require('ejs');
+'use strict';
 
-module.exports = (storyId) => {
-  return request({
-    uri: `https://www.whosay.com/api/story/${storyId}`,
-    json: true
-  })
-    .then(story => {
-      var response;
+const _ = require('lodash');
+const request = require('request-promise');
+const toJson = require('html-to-article-json')({});
+const toAmp = require('article-json-to-amp');
+const ejs = require('ejs');
 
-      var html = _(story.items)
-        .filter(item => item.htmlContent)
-        .map(item => item.htmlContent);
+module.exports = (storyId) => request({
+  uri: `https://www.whosay.com/api/story/${storyId}`,
+  json: true
+})
+  .then(story => {
+    let html = _(story.items)
+      .filter(item => item.htmlContent)
+      .map(item => item.htmlContent);
 
-      // Append cover image
-      // really - we need to do a few more things here:
-      // 1) add cover image
-      // 2) add article title
-      // 3) add article published data/time
-      // 4) add any publisher information - from the api response.
-      html = `
+    // Append cover image
+    // really - we need to do a few more things here:
+    // 1) add cover image
+    // 2) add article title
+    // 3) add article published data/time
+    // 4) add any publisher information - from the api response.
+    html = `
         <img height="435" width="435" src="${story.coverImageUrl}435.jpg" layout="responsive"/>
         ${html}
       `;
 
-      html = toJson(html);
+    html = toJson(html);
 
-      return template()({
-        body: toAmp(html),
-        title: story.title,
-        image: story.coverImageUrl + '435.jpg'
-      });
+    return template()({
+      body: toAmp(html),
+      title: story.title,
+      image: `${story.coverImageUrl}435.jpg`
     });
-};
+  });
+
 
 ///////////////
 /// private
+
+/* eslint-disable max-len */
 
 function template() {
   return ejs.compile(`<!doctype html>
@@ -68,6 +69,6 @@ function template() {
     <%- body %>
   </body>
 </html>  
-  `)
+  `);
 }
 
